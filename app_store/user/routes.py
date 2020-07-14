@@ -55,3 +55,17 @@ def account(name):
 def logout():
 	logout_user()
 	return redirect(url_for('shop.index'))
+
+@user.route("/activate/<username>", methods=['GET','POST'])
+def activate(username):
+    return 'pass'
+
+
+@user.route("/request_reset", methods=['GET','POST'])
+def request_reset():
+    return 'pass'
+
+
+@user.route("/reset_password", methods=['GET', 'POST'])
+def reset_password():
+    return 'pass'

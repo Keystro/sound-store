@@ -40,10 +40,16 @@ def create_item():
             image_file1 = save_picture1(form.item_pic1.data)
             image_file2 = save_picture2(form.item_pic2.data)
             image_file3 = save_picture3(form.item_pic3.data)
-            item = Item(item_pic1 = image_file1, item_pic2 = image_file2, item_pic3 = image_file3, name = form.name.data, description = form.description.data, price = form.price.data )
+            item = Item(item_pic1 = image_file1, item_pic2 = image_file2, item_pic3 = image_file3, name = form.name.data, 
+description = form.description.data, price = form.price.data )
             db.session.add(item)
             db.session.commit()
             flash(f'Item, {form.name.data} succesfully added to database','success')
             return redirect(url_for('admin.create_item'))
         return render_template('admin/create_item.html', title='Add to Database', form=form)
     return redirect(url_for('errors.404'))
+
+@admin.route('/add_admin', methods=['GET','POST'])
+def add_admin():
+    return 'pass'
+

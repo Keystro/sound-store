@@ -6,11 +6,13 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_admin import Admin
 from flask_migrate import Migrate
+from flask_mail import Mail
 from app_store.config import Config
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
 migrate = Migrate()
+mail = Mail()
 admin = Admin(name = 'Dashboard')
 login_manager = LoginManager()
 
@@ -23,6 +25,7 @@ def create_app(config_class = Config):
     bcrypt.init_app(app)
     login_manager.init_app(app)
     migrate.init_app(app, db)
+    mail.init_app(app)
 
     from app_store.user.routes import user
     from app_store.admin.routes import admin

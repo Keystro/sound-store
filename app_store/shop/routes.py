@@ -55,3 +55,15 @@ def cart(name):
     if not user:
         return redirect(url_for('user.login'))
     return render_template('shop/cart.html', title = current_user.username, carts=carts)
+
+@shop.route("verify_transaction/<username>", methods=['GET','POST'])
+def verify_transaction(username):
+    return 'pass'
+
+@shop.route('invoice', methods=['GET', 'POST'])
+def invoice():
+    return 'pass'
+
+@shop.route("purchase_order", methods=['GET', 'POST'])
+def purchase_order():
+    return 'pass'
