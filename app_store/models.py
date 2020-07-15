@@ -1,5 +1,9 @@
 from datetime import datetime
-from app_store import db, admin, login_manager
+import os
+from time import time
+from flask import current_app as app
+from itsdangerous import TimedJSONWebSignatureSerializer as Serializer 
+from app_store import db, admin, login_manager, bcrypt
 from flask_login import UserMixin, LoginManager, current_user
 from flask_admin.contrib.sqla import ModelView
 
@@ -25,6 +29,28 @@ class User(db.Model, UserMixin):
 
     def __repr__(self):
         return f"User('{self.username}','{self.email}','{self.address}','{self.tell}','{self.post_code}','{self.county}', '{self.ward}')"
+
+    def set_reset_token(self, expires_sec = 1800):
+        s = Serializer(app.config['SECRET_KEY'], expires_sec)
+        return s.dumps({'user_id':self.id}).decode('utf-8')
+
+    @staticmethod
+    def verify_reset_token(token):
+        s = Serializer(app.config['SECRET_KEY'])
+        try:
+            user_id = s.loads(token)['user_id']
+        except:
+            return
+        return User.query.get(user_id)
+
+    def set_password(self, pswd):
+        self.password = bcrypt.generate_password_hash(pswd).decode('utf-8')
+        return pswd
+
+    def verify_password(self, password):
+        return bcrypt.check_password_hash(self.password, password)
+
+
 
 class Category(db.Model):
     id = db.Column(db.Integer, primary_key = True, autoincrement = True)

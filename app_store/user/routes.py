@@ -1,12 +1,12 @@
 from app_store import login_manager, db, bcrypt
 from flask import Blueprint, flash, render_template, url_for, redirect, request
 from flask_login import login_user, current_user, logout_user, login_required
-from app_store.user.forms import LoginForm, RegisterForm
+from flask_mail import message
+from app_store.user.utils import send_password_reset_email
+from app_store.user.forms import LoginForm, RegisterForm, ResetRequestForm, ResetPasswordForm
 from app_store.models import User, Order
 
 
-
-user = Blueprint('user', __name__)
 
 
 @user.route('/login', methods=['GET', 'POST'])
@@ -56,6 +56,7 @@ def logout():
 	logout_user()
 	return redirect(url_for('shop.index'))
 
+
 @user.route("/activate/<username>", methods=['GET','POST'])
 def activate(username):
     return 'pass'
@@ -63,7 +64,16 @@ def activate(username):
 
 @user.route("/request_reset", methods=['GET','POST'])
 def request_reset():
-    return 'pass'
+    if current_user.is_authenticated:
+        return redirect(url_for('shop.index'))
+    form = ResetRequestForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user:
+            send_password_reset_email(user)
+        flash('Check your email for instructions to rest your password')
+        return redirect(url_for('user.login'))
+    return render_template('user/reset_request.html', title='Reset Password', form=form)
 
 
 @user.route("/reset_password", methods=['GET', 'POST'])

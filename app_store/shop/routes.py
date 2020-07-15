@@ -5,7 +5,7 @@ from app_store.shop.forms import AddToCartForm
 from app_store.models import User, Item, Order, Cart
 
 
-shop = Blueprint('shop', __name__)
+
 
 @shop.route('/')
 @shop.route('/index')

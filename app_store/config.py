@@ -8,8 +8,8 @@ class Config():
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     
 class Mail_config(Config):
-    MAIL_PORT=8025
-    MAIL_SERVER='localhost'
+    MAIL_PORT = 57
+    MAIL_SERVER = 'smtp.googlemail.com'
     SQLALCHEMY_DATABASE_URI = 'sqlite:///'+os.path.join(basedir,'vault.db')
     DEBUG=True
 

@@ -30,4 +30,11 @@ class RegisterForm(FlaskForm):
         if user:
             return ValidationError('Email Taken')
 
+class ResetRequestForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired()])
+    submit = SubmitField('Reset')
 
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    confirm_password = PasswordField('Confirm_Password', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Reset Password')

@@ -6,7 +6,6 @@ from app_store.admin.forms import AdminRegisterForm, ItemForm
 from flask_login import login_user, current_user, logout_user, login_required
 from app_store.admin.utils import save_picture1, save_picture2, save_picture3
 
-admin = Blueprint('admin', __name__)
 
 
 @admin.route('/dashboard')
@@ -48,6 +47,7 @@ description = form.description.data, price = form.price.data )
             return redirect(url_for('admin.create_item'))
         return render_template('admin/create_item.html', title='Add to Database', form=form)
     return redirect(url_for('errors.404'))
+
 
 @admin.route('/add_admin', methods=['GET','POST'])
 def add_admin():
