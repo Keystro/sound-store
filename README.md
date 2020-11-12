@@ -1,7 +1,7 @@
-#Prime-tech Store
+# Prime-tech Store
 
 
-##About project:
+## About project:
     This is an online e-commerce site.
     It provides conusmers with easy access to common electronis such as headphones, earphones
     boomboxes, and so on 
@@ -10,32 +10,32 @@
     as Marc Consolidated with a point to penertate the market with their products
     Mainly to promote  creavitivy and innovation among the youth and industrialization at large
 
-##Project features:
-    ###User View:
-        login,Register & logout 
-        Email for account activation & reset password
-        User account customization(change password, personal details, delete password
-        stop subscription, purchase tracking )
-        Shopping cart
-        Recieve email for purchase verification
-        Automated Receipt generation(sent to user account & email)
-        Product rating and comment
-        Search functionality 
-        Categories menu
-        Product page
+## Project features:
+    ### User View:
+            login,Register & logout 
+            Email for account activation & reset password
+            User account customization(change password, personal details, delete password
+            stop subscription, purchase tracking )
+            Shopping cart
+            Recieve email for purchase verification
+            Automated Receipt generation(sent to user account & email)
+            Product rating and comment
+            Search functionality 
+            Categories menu
+            Product page
     
-    ###Admin View:
-        login,Register & logout
-        Create category & product
-        View database
-        Add admin &/ moderator
-        Recieves invoices/orders notification(email & notifications page)
-        Sales tracking( PDf generation)
-        notifications(comments & orders)
+    ### Admin View:
+            login,Register & logout
+            Create category & product
+            View database
+            Add admin &/ moderator
+            Recieves invoices/orders notification(email & notifications page)
+            Sales tracking( PDf generation)
+            notifications(comments & orders)
         
-    ###Moderator view:
-        login,Register & logout
-        Create subscription content(about new products, most popular products & marketing)
+    ### Moderator view:
+            login,Register & logout
+            Create subscription content(about new products, most popular products & marketing)
 
 
 
@@ -43,17 +43,17 @@
     
 
 
-#To initialize the DB 
+# To initialize the DB 
     >>> flask db init
     >>> flask db migrate
     >>> flask db upgrade
 
 
-#Running the app in debug mode:
+# Running the app in debug mode:
     >>> export FLASK_APP=setup.py
     >>> export FLASK_ENV=development/ export FLASK_DEBUG=True
     >>> flask run 
 
-#Running with debug off:
+# Running with debug off:
     >>> export FLASK_APP=setup.py
     >>> flask run
